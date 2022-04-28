@@ -18,13 +18,12 @@ class Map {
 
         const cluster = L.markerClusterGroup()
 
-        for(let i=0; i < sgData.length; i++) {
-            const data = sgData[i];
-            let coords = [data.latitude, data.longitude];
-            cluster.addLayer(this.createMarker(coords, data))
-        }
+        const pins = sgData.map( data => {
+            const coords = [data.latitude, data.longitude];
+            return this.createMarker(coords, data);
+        })
 
-        return cluster;
+        return cluster.addLayer(L.layerGroup(pins));
     }
 
     createMarker(coords, data) {
@@ -36,11 +35,7 @@ class Map {
     }
 
     createCustomPin(data) {
-        const templ = `
-        <div class="custom-pin">
-            ${data.price}
-        </div>
-        `;
+        const templ = `<div class="custom-pin">${data.price}</div>`;
         return L.divIcon({
             html: templ
         })
