@@ -16,14 +16,12 @@ class Map {
 
         const sgData = await this.fetchData();
 
-        const cluster = L.markerClusterGroup()
-
         const pins = sgData.map( data => {
             const coords = [data.latitude, data.longitude];
             return this.createMarker(coords, data);
         })
 
-        return cluster.addLayer(L.layerGroup(pins));
+        return L.layerGroup(pins);
     }
 
     createMarker(coords, data) {
