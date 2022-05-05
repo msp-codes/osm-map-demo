@@ -8,17 +8,10 @@ class Map {
         });
     }
 
-    createBaseLayer() {
-        return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-    }
-
 }
 
 (async (map) => {
     var mapObj = map.init();
-
-    // Add base layer tile to map
-    mapObj.addLayer(map.createBaseLayer());
 
 })(new Map());
 
