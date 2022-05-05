@@ -18,25 +18,14 @@ class Map {
 
         const pins = sgData.map( data => {
             const coords = [data.latitude, data.longitude];
-            return this.createMarker(coords, data);
+            return this.createMarker(coords);
         })
 
         return L.layerGroup(pins);
     }
 
-    createMarker(coords, data) {
-
-        return L.marker(coords, {
-            data: data,
-            icon: this.createCustomPin(data)
-        })
-    }
-
-    createCustomPin(data) {
-        const templ = `<div class="custom-pin">${data.price}</div>`;
-        return L.divIcon({
-            html: templ
-        })
+    createMarker(coords) {
+        return L.marker(coords);
     }
 
     async fetchData() {
