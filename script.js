@@ -12,11 +12,6 @@ class Map {
         return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
     }
 
-
-    async fetchData() {
-        const res = await fetch('singapore-listing.json').then( res => res.json())
-        return res;
-    }
 }
 
 (async (map) => {
